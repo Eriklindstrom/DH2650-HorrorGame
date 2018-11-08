@@ -7,6 +7,7 @@ TagManager:
   - Door
   - RoomWalls
   - ElectricLight
+  - Candle
   layers:
   - Default
   - TransparentFX
