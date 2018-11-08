@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
@@ -60,8 +60,9 @@ public class ViveInput : MonoBehaviour {
                 movePos = Quaternion.AngleAxis(cameraRot, Vector3.up) * movePos;
                 Player.transform.position += movePos * moveSpeed;
                 //Vector3 movePos = new Vector3(touchPadValue.x * moveSpeed, 0, touchPadValue.y * moveSpeed);
-                //Player.transform.position -= Player.transform.position;*/
+                //Player.transform.position -= Player.transform.position;*//*
             }
         }
     }
 }
+*/
