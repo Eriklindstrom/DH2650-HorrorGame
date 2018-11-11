@@ -17,10 +17,13 @@ public class HouseController : MonoBehaviour {
     \**********************/
 
     [HideInInspector] public float madnessPercentage = 0.0f;
+    [HideInInspector] public bool lightsOut = false;
 
-    private KeyValuePair<Light, float>[] electricLights;
+    private KeyValuePair<GameObject, float>[] electricLights;
     private KeyValuePair<GameObject, float>[] candles;
     private GameObject[] candleFlames;
+
+    private float flickerTimer = 0.0f;
 
     /***************\
         Functions
@@ -33,11 +36,11 @@ public class HouseController : MonoBehaviour {
 
         //Initialize array of lights, also store their initial intensities        
         GameObject[] lightObjects = GameObject.FindGameObjectsWithTag(GameConstants.TAG_LIGHTS);
-        electricLights = new KeyValuePair<Light, float>[lightObjects.Length];
+        electricLights = new KeyValuePair<GameObject, float>[lightObjects.Length];
         for (int i = 0; i < lightObjects.Length; i++)
         {
             Light currentLight = lightObjects[i].GetComponent<Light>();
-            electricLights[i] = new KeyValuePair<Light, float>(currentLight, currentLight.intensity);
+            electricLights[i] = new KeyValuePair<GameObject, float>(lightObjects[i], currentLight.intensity);
         }
 
         //Initialize array of candles along with time since last reconfiguration
@@ -77,7 +80,7 @@ public class HouseController : MonoBehaviour {
     {
         for(int i = 0; i < electricLights.Length; i++)
         {
-            Light currentLight = electricLights[i].Key;
+            Light currentLight = electricLights[i].Key.GetComponent<Light>();
             float initialIntensity = electricLights[i].Value;
             currentLight.intensity = initialIntensity - (initialIntensity * madnessPercentage);
         }
@@ -150,5 +153,38 @@ public class HouseController : MonoBehaviour {
                 candleFlames[i].GetComponent<ParticleSystem>().startColor = new Color(0.8f, 0.1f, 0.1f);
             }
         }
+    }
+
+    /**
+     Lighst flicker out for the provided number of seconds */
+    public IEnumerator LightsOut(float seconds)
+    {
+        lightsOut = true;
+        flickerTimer = 0.0f;
+
+        //Disable lights
+        foreach (var currentLight in electricLights)
+        {
+            Debug.Log(1 + " " + flickerTimer);
+            currentLight.Key.SetActive(false);
+        }        
+
+        //Wait
+        while (flickerTimer <= seconds && lightsOut)
+        {
+            Debug.Log(2 + " " + flickerTimer);
+            flickerTimer += Time.deltaTime;
+            yield return null;
+        }
+        
+        //Re-enable lights
+        foreach (var currentLight in electricLights)
+        {
+            Debug.Log(3 + " " + flickerTimer);
+            currentLight.Key.SetActive(true);            
+        }
+        
+        lightsOut = false;
+        yield break;
     }
 }

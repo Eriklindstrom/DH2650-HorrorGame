@@ -8,6 +8,10 @@ TagManager:
   - RoomWalls
   - ElectricLight
   - Candle
+  - TeleportIgnore
+  - ExcludeTeleport
+  - FxTemporaire
+  - projectile
   layers:
   - Default
   - TransparentFX

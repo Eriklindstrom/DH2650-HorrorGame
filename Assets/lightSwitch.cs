@@ -8,6 +8,7 @@
         public bool rotated = false;
 
         public GameObject Light;
+        public GameObject houseControllerObj;
 
         private float sideFlip = -1;
         private float side = -1;
@@ -18,6 +19,8 @@
         private Vector3 defaultRotation;
         private Vector3 openRotation;
 
+        private HouseController houseController;
+
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
             base.StartUsing(usingObject);
@@ -25,6 +28,7 @@
             SetRotation();
             open = !open;
             GetComponent<AudioSource>().Play(0);
+            houseController = houseControllerObj.GetComponent<HouseController>();
         }
 
         protected void Start()
@@ -33,21 +37,21 @@
             defaultRotation = transform.eulerAngles;
             SetRotation();
             sideFlip = (flipped ? 1 : -1);
+            houseController = houseControllerObj.GetComponent<HouseController>();
         }
 
         protected override void Update()
         {
+
             base.Update();
             if (open)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
-                Debug.Log("open");
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth); 
                 Light.SetActive(false);
             }
-            else
+            else if(!houseController.lightsOut)
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
-                Debug.Log("closed");
                 Light.SetActive(true);
             }
         }
