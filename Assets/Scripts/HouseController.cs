@@ -165,14 +165,12 @@ public class HouseController : MonoBehaviour {
         //Disable lights
         foreach (var currentLight in electricLights)
         {
-            Debug.Log(1 + " " + flickerTimer);
             currentLight.Key.SetActive(false);
         }        
 
         //Wait
         while (flickerTimer <= seconds && lightsOut)
         {
-            Debug.Log(2 + " " + flickerTimer);
             flickerTimer += Time.deltaTime;
             yield return null;
         }
@@ -180,7 +178,6 @@ public class HouseController : MonoBehaviour {
         //Re-enable lights
         foreach (var currentLight in electricLights)
         {
-            Debug.Log(3 + " " + flickerTimer);
             currentLight.Key.SetActive(true);            
         }
         
