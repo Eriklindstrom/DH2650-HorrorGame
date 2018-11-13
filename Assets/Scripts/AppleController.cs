@@ -20,7 +20,7 @@ public class AppleController : MonoBehaviour {
 		if(numberOfAnts < houseController.madnessPercentage * 10)
         {
             GameObject ant = Instantiate(antPrefab);
-            ant.transform.localScale = new Vector3(1e-05f, 1e-05f, 1e-05f);
+            ant.transform.localScale = new Vector3(5e-06f, 5e-06f, 5e-06f);
             ant.transform.SetParent(transform, false);
             PlaceAntOnMesh(ant);
             numberOfAnts++;
@@ -41,9 +41,10 @@ public class AppleController : MonoBehaviour {
         Vector3[] vertices = mesh.vertices;
 
         var q = Random.Range(0, vertices.Length);
+
+        ant.transform.rotation = Quaternion.FromToRotation(Vector3.up, vertices[q]);
         ant.transform.position = transform.TransformPoint(vertices[q]);
         
-        ant.transform.rotation = Quaternion.FromToRotation(Vector3.up, vertices[q]);
         //ant.transform.position = hit.point;        
     }
 }
