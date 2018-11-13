@@ -8,23 +8,42 @@ public class AppleController : MonoBehaviour {
     [SerializeField] private GameObject houseControllerObj;
 
     private HouseController houseController;
-    private float numberOfAnts; 
+    private float numberOfAnts;
+    private List<GameObject> appleAnts;
 
     void Start()
     {
         houseController = houseControllerObj.GetComponent<HouseController>();
+        appleAnts = new List<GameObject>();
     }
 	
 	void Update ()
     {
-		if(numberOfAnts < houseController.madnessPercentage * 10)
+		if(numberOfAnts < houseController.madnessPercentage * 25)
         {
             GameObject ant = Instantiate(antPrefab);
             ant.transform.localScale = new Vector3(5e-06f, 5e-06f, 5e-06f);
             ant.transform.SetParent(transform, false);
             PlaceAntOnMesh(ant);
             numberOfAnts++;
+            appleAnts.Add(ant);
         }
+        
+        foreach(GameObject appleAnt in appleAnts)
+        {
+            Vector3 oldPos = appleAnt.transform.position;
+            Vector3 newPos = oldPos + appleAnt.transform.rotation * Vector3.right * 0.01f * Time.deltaTime;
+            
+            Vector3 v1 = oldPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
+            Vector3 v2 = newPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
+
+            Vector3 v3 = Vector3.ClampMagnitude(v2, v1.magnitude);
+            Vector3 destination = transform.GetChild(0).GetComponent<Renderer>().bounds.center + v3;
+
+            appleAnt.transform.position = newPos;
+            appleAnt.transform.rotation = Quaternion.FromToRotation(Vector3.up, v2);
+        }
+
 	}
 
     void PlaceAntOnMesh(GameObject ant)
@@ -42,7 +61,8 @@ public class AppleController : MonoBehaviour {
 
         var q = Random.Range(0, vertices.Length);
 
-        ant.transform.rotation = Quaternion.FromToRotation(Vector3.up, vertices[q]);
+        Vector3 centerToPoint = vertices[q] - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
+        ant.transform.rotation = Quaternion.FromToRotation(Vector3.up, centerToPoint);
         ant.transform.position = transform.TransformPoint(vertices[q]);
         
         //ant.transform.position = hit.point;        

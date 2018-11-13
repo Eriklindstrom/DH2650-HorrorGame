@@ -82,7 +82,7 @@ public class HouseController : MonoBehaviour {
         {
             Light currentLight = electricLights[i].Key.GetComponent<Light>();
             float initialIntensity = electricLights[i].Value;
-            currentLight.intensity = initialIntensity - (initialIntensity * madnessPercentage);
+            currentLight.intensity = initialIntensity - (initialIntensity * madnessPercentage) / 2;
         }
     }
 
