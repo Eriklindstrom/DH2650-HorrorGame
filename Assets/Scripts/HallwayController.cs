@@ -57,10 +57,10 @@ public class HallwayController : MonoBehaviour {
 
     void FlipChairs()
     {
-        StartCoroutine(houseController.LightsOut(0.5f));
+        StartCoroutine(houseController.LightsOut(0.3f));
 
-        armCharis[armCharis.Count - 1].transform.Rotate(new Vector3(0, 90, 0));
-        armCharis[armCharis.Count - 1].transform.position -= new Vector3(1.2f, 0, 0);
+        armCharis[0].transform.Rotate(new Vector3(0, 270, 0));
+        armCharis[0].transform.position += new Vector3(1.4f, 0, 0);
 
         chairsFlipped = true;
     }
