@@ -9,12 +9,12 @@ public class AppleController : MonoBehaviour {
 
     private HouseController houseController;
     private float numberOfAnts;
-    private List<GameObject> appleAnts;
+    private List<KeyValuePair<GameObject, float>> appleAnts;
 
     void Start()
     {
         houseController = houseControllerObj.GetComponent<HouseController>();
-        appleAnts = new List<GameObject>();
+        appleAnts = new List<KeyValuePair<GameObject, float>>();
     }
 	
 	void Update ()
@@ -22,18 +22,21 @@ public class AppleController : MonoBehaviour {
 		if(numberOfAnts < houseController.madnessPercentage * 25)
         {
             GameObject ant = Instantiate(antPrefab);
-            ant.transform.localScale = new Vector3(5e-06f, 5e-06f, 5e-06f);
+            //ant.transform.localScale = new Vector3(5e-06f, 5e-06f, 5e-06f);
             ant.transform.SetParent(transform, false);
             PlaceAntOnMesh(ant);
             numberOfAnts++;
-            appleAnts.Add(ant);
+            appleAnts.Add(new KeyValuePair<GameObject, float>(ant, 0));
         }
-        
 
-        foreach(GameObject appleAnt in appleAnts)
+
+        for(int i = 0; i < appleAnts.Count; i++)
         {
+            GameObject appleAnt = appleAnts[i].Key;
+            float angle = appleAnts[i].Value;
+
             Vector3 oldPos = appleAnt.transform.position;
-            Vector3 newPos = oldPos + appleAnt.transform.rotation * Vector3.right * 0.01f * Time.deltaTime;
+            Vector3 newPos = oldPos + appleAnt.transform.rotation * Vector3.forward * 0.005f * Time.deltaTime;
             
             Vector3 v1 = oldPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
             Vector3 v2 = newPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
@@ -54,11 +57,11 @@ public class AppleController : MonoBehaviour {
                 //appleAnt.transform.Rotate(appleAnt.transform.up, 90f);
             }
             appleAnt.transform.Rotate(appleAnt.transform.rotation * Vector3.up, angle);
+            appleAnts[i] = new KeyValuePair<GameObject, float>(appleAnt, angle);
         }
 
 	}
-
-    float angle = 0;
+    
 
     void PlaceAntOnMesh(GameObject ant)
     {        
@@ -80,5 +83,11 @@ public class AppleController : MonoBehaviour {
         ant.transform.position = transform.TransformPoint(vertices[q]);
         
         //ant.transform.position = hit.point;        
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "[VRTK][AUTOGEN][HeadsetColliderContainer]")
+            Debug.Log("collision");
     }
 }
