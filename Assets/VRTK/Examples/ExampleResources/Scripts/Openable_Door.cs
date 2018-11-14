@@ -9,7 +9,7 @@
 
         private float sideFlip = -1;
         private float side = -1;
-        private float smooth = 180.0f;
+        private float smooth = 90.0f;
         private float doorOpenAngle = -90f;
         private bool open = false;
 
@@ -22,6 +22,7 @@
             SetDoorRotation(usingObject.transform.position);
             SetRotation();
             open = !open;
+            GetComponent<AudioSource>().Play(0);
         }
 
         protected void Start()
@@ -29,6 +30,7 @@
             defaultRotation = transform.eulerAngles;
             SetRotation();
             sideFlip = (flipped ? 1 : -1);
+            GetComponent<AudioSource>().Pause();
         }
 
         protected override void Update()
