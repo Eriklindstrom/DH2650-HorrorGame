@@ -5,45 +5,47 @@ using UnityEngine;
 /**
 * Handles rotation of doors. It would be cool to be able to open the doors with the vive controllers however. 
 **/
-public class rotateDoor : MonoBehaviour {
+namespace VRTK.Examples
+{
+    public class rotateDoor : VRTK_InteractableObject
+    {
 
-    [SerializeField] private GameObject RotateAround;   //Empty object on door to rotate around
+        [SerializeField] private GameObject RotateAround;   //Empty object on door to rotate around
 
-    private bool rotate;                //Bool that handles opening of the door
-    private bool rotateBack;            //Bool that handles closing of the door
-    private float totAngle;             //Float to check when to stop rotating
-	
-	void Update () {
-        if (Input.GetKeyDown("space") && totAngle > -90)    //Placeholder button, if the door is closed and you press a button
+        private bool open = false;
+        private float totAngle;             //Float to check when to stop rotating
+
+
+        public override void StartUsing(VRTK_InteractUse usingObject)
         {
-            rotate = true;  
-            rotateBack = false;
+            open = !open;
         }
-        if(rotate)                                          //Rotate a total of -90 degrees
+
+
+        protected override void Update()
         {
-            float angle = -90 * Time.deltaTime;
-            totAngle += angle;
-            transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
-            if(totAngle < -90)
+            base.Update();
+            if (open)
             {
-                rotate = false;
+                float angle = 45 * Time.deltaTime;
+                totAngle += angle;
+                transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
+                if (totAngle > 90)
+                {
+                    open = !open;
+                }
             }
-        }
-
-        if (Input.GetKeyDown("space") && totAngle < -90)    //Placeholder button, if the door is opened and you press a button
-        {
-            rotateBack = true;
-            rotate = false;
-        }
-        if (rotateBack)                                     //Rotate a total of 90 degrees
-        {
-            float angle = 90 * Time.deltaTime;
-            totAngle += angle;
-            transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
-            if (totAngle > 0)
+            /*else
             {
-                rotateBack = false;
-            }
+                float angle = -45 * Time.deltaTime;
+                totAngle += angle;
+                transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
+                if (totAngle < 0)
+                {
+                    open = !open;
+                }
+            }*/
         }
     }
 }
+    
