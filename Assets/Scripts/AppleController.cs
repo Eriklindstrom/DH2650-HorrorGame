@@ -52,7 +52,7 @@ public class AppleController : MonoBehaviour {
             if (rand > 99.0)
             {
                 angle += 20;
-                Debug.Log(appleAnt.transform.rotation);                
+                //Debug.Log(appleAnt.transform.rotation);                
                 //appleAnt.transform.LookAt(appleAnt.transform.right);
                 //appleAnt.transform.Rotate(appleAnt.transform.up, 90f);
             }
