@@ -29,6 +29,7 @@ public class AppleController : MonoBehaviour {
             appleAnts.Add(ant);
         }
         
+
         foreach(GameObject appleAnt in appleAnts)
         {
             Vector3 oldPos = appleAnt.transform.position;
@@ -37,14 +38,27 @@ public class AppleController : MonoBehaviour {
             Vector3 v1 = oldPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
             Vector3 v2 = newPos - transform.GetChild(0).GetComponent<Renderer>().bounds.center;
 
-            Vector3 v3 = Vector3.ClampMagnitude(v2, v1.magnitude);
+            Vector3 v3 = Vector3.ClampMagnitude(v2 * 2, transform.GetComponent<SphereCollider>().radius);
+            //Vector3 destination = transform.GetChild(0).GetComponent<Renderer>().bounds.center + v3;
             Vector3 destination = transform.GetChild(0).GetComponent<Renderer>().bounds.center + v3;
 
-            appleAnt.transform.position = newPos;
-            appleAnt.transform.rotation = Quaternion.FromToRotation(Vector3.up, v2);
+            appleAnt.transform.position = destination;
+            appleAnt.transform.rotation = Quaternion.FromToRotation(Vector3.up, v3);
+
+            float rand = Random.Range(0.0f, 100.0f);
+            if (rand > 99.0)
+            {
+                angle += 20;
+                Debug.Log(appleAnt.transform.rotation);                
+                //appleAnt.transform.LookAt(appleAnt.transform.right);
+                //appleAnt.transform.Rotate(appleAnt.transform.up, 90f);
+            }
+            appleAnt.transform.Rotate(appleAnt.transform.rotation * Vector3.up, angle);
         }
 
 	}
+
+    float angle = 0;
 
     void PlaceAntOnMesh(GameObject ant)
     {        
