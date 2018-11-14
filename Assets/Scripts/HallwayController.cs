@@ -17,9 +17,7 @@ public class HallwayController : MonoBehaviour {
     {
         houseController = houseControllerObject.GetComponent<HouseController>();              
 	}
-
-
-    bool foo = true;
+    
 
 	void Update ()
     {
