@@ -7,6 +7,11 @@ public class BookController : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         GetComponent<AudioSource>().Play();
-        Debug.Log("collision");
+        Debug.Log(other.gameObject.name);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("trigger " + other.gameObject.name);
     }
 }

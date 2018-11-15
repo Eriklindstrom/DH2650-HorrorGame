@@ -6,6 +6,9 @@ public class AppleController : MonoBehaviour {
 
     [SerializeField] private GameObject antPrefab;
     [SerializeField] private GameObject houseControllerObj;
+    [SerializeField] private GameObject toilet;
+
+    bool[] interactionTrigggers;
 
     private HouseController houseController;
     private float numberOfAnts;
@@ -16,6 +19,7 @@ public class AppleController : MonoBehaviour {
     {
         houseController = houseControllerObj.GetComponent<HouseController>();
         appleAnts = new List<KeyValuePair<GameObject, float>>();
+        interactionTrigggers = new bool[4];
     }
 	
     /**
@@ -79,11 +83,69 @@ public class AppleController : MonoBehaviour {
      Players rewarded with 20 seconds sanity for putting apples in the toilet */
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("enter trigger :  " + other.name);
         if (other.gameObject.tag == GameConstants.TAG_TOILET && !desposedOf)
         {
             Debug.Log("Apple's in the toilet");
             houseController.madness -= 20;
             desposedOf = true;
+        }
+        
+                int beforeCheck = 0;
+                foreach (bool trigg in interactionTrigggers)
+                {
+                    if (trigg) beforeCheck++;
+                }
+                switch(other.gameObject.name)
+                {
+                    case "Controller (left)":
+                        interactionTrigggers[0] = true;
+                        break;
+                    case "Controller (right)":
+                        interactionTrigggers[1] = true;
+                        break;
+                }
+                int afterCheck = 0;
+                foreach (bool trigg in interactionTrigggers)
+                {
+                    if (trigg) afterCheck++;
+                }
+
+                if(beforeCheck == 0 && afterCheck != 0 && !toilet.GetComponent<AudioSource>().isPlaying)
+                {
+                    toilet.GetComponent<AudioSource>().Play();
+                }                
+    }
+
+    /**
+    Players rewarded with 20 seconds sanity for putting apples in the toilet */
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("enter exit:  " + other.name);
+        int beforeCheck = 0;
+        foreach (bool trigg in interactionTrigggers)
+        {
+            if (trigg) beforeCheck++;
+        }
+        
+        switch (other.gameObject.name)
+        {
+            case "Controller (left)":
+                interactionTrigggers[0] = false;
+            break;
+            case "Controller (right)":
+                interactionTrigggers[1] = false;
+            break;
+        }
+        int afterCheck = 0;
+        foreach (bool trigg in interactionTrigggers)
+        {
+            if (trigg) afterCheck++;
+        }
+
+        if (beforeCheck != 0 && afterCheck == 0)
+        {
+            toilet.GetComponent<AudioSource>().Stop();
         }
     }
 }
