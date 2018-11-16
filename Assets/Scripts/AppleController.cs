@@ -8,24 +8,35 @@ public class AppleController : MonoBehaviour {
     [SerializeField] private GameObject houseControllerObj;
     [SerializeField] private GameObject toilet;
 
-    bool[] interactionTrigggers;
-
     private HouseController houseController;
     private float numberOfAnts;
     private List<KeyValuePair<GameObject, float>> appleAnts;
+
     private bool desposedOf = false;
+    private bool eatingApple = false;
+    private float eatingTimer = 0.0f;
 
     void Start()
     {
         houseController = houseControllerObj.GetComponent<HouseController>();
         appleAnts = new List<KeyValuePair<GameObject, float>>();
-        interactionTrigggers = new bool[4];
     }
 	
     /**
      Plant and remove insects, and update their locations */
 	void Update ()
     {
+        if (eatingApple)
+            eatingTimer += Time.deltaTime;
+
+        if(eatingTimer >= 0.5f)
+        {
+            houseController.madness -= 20;
+            desposedOf = true;
+            gameObject.SetActive(false);
+        }
+
+
 		if(numberOfAnts < houseController.madnessPercentage * 20)
         {
             GameObject ant = Instantiate(antPrefab);
@@ -91,61 +102,22 @@ public class AppleController : MonoBehaviour {
             desposedOf = true;
         }
         
-                int beforeCheck = 0;
-                foreach (bool trigg in interactionTrigggers)
-                {
-                    if (trigg) beforeCheck++;
-                }
-                switch(other.gameObject.name)
-                {
-                    case "Controller (left)":
-                        interactionTrigggers[0] = true;
-                        break;
-                    case "Controller (right)":
-                        interactionTrigggers[1] = true;
-                        break;
-                }
-                int afterCheck = 0;
-                foreach (bool trigg in interactionTrigggers)
-                {
-                    if (trigg) afterCheck++;
-                }
-
-                if(beforeCheck == 0 && afterCheck != 0 && !toilet.GetComponent<AudioSource>().isPlaying)
-                {
-                    toilet.GetComponent<AudioSource>().Play();
-                }                
+        if (other.gameObject.name == "Camera (head)")
+        {
+            Debug.Log("Exiting head trigger");
+            eatingApple = true;
+        }
     }
 
     /**
     Players rewarded with 20 seconds sanity for putting apples in the toilet */
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("enter exit:  " + other.name);
-        int beforeCheck = 0;
-        foreach (bool trigg in interactionTrigggers)
+        if(other.gameObject.name == "Camera (head)")
         {
-            if (trigg) beforeCheck++;
-        }
-        
-        switch (other.gameObject.name)
-        {
-            case "Controller (left)":
-                interactionTrigggers[0] = false;
-            break;
-            case "Controller (right)":
-                interactionTrigggers[1] = false;
-            break;
-        }
-        int afterCheck = 0;
-        foreach (bool trigg in interactionTrigggers)
-        {
-            if (trigg) afterCheck++;
-        }
-
-        if (beforeCheck != 0 && afterCheck == 0)
-        {
-            toilet.GetComponent<AudioSource>().Stop();
+            Debug.Log("Exiting head trigger");
+            eatingApple = false;
+            eatingTimer = 0.0f;
         }
     }
 }
