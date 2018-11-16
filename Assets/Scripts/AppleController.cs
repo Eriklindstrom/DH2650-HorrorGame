@@ -102,7 +102,7 @@ public class AppleController : MonoBehaviour {
             desposedOf = true;
         }
         
-        if (other.gameObject.name == "Camera (head)")
+        if (other.gameObject.tag == "MainCamera")
         {
             Debug.Log("Exiting head trigger");
             eatingApple = true;
@@ -113,7 +113,7 @@ public class AppleController : MonoBehaviour {
     Players rewarded with 20 seconds sanity for putting apples in the toilet */
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.name == "Camera (head)")
+        if(other.gameObject.tag == "MainCamera")
         {
             Debug.Log("Exiting head trigger");
             eatingApple = false;
