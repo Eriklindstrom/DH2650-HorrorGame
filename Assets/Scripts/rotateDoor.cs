@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
-* Handles rotation of doors. It would be cool to be able to open the doors with the vive controllers however. 
+* Handles rotation of doors. Can't close
 **/
 namespace VRTK.Examples
 {
@@ -13,6 +13,7 @@ namespace VRTK.Examples
         [SerializeField] private GameObject RotateAround;   //Empty object on door to rotate around
 
         private bool open = false;
+        private bool isOpened = false;
         private float totAngle;             //Float to check when to stop rotating
 
 
@@ -25,26 +26,74 @@ namespace VRTK.Examples
         protected override void Update()
         {
             base.Update();
-            if (open)
+            if (open && !isOpened)
             {
-                float angle = 45 * Time.deltaTime;
-                totAngle += angle;
-                transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
-                if (totAngle > 90)
+                //Debug.Log("1" + isOpened);
+                //Debug.Log(isOpened);
+                if (gameObject.tag != "RotateUp")
                 {
-                    open = !open;
+                    float angle = 45 * Time.deltaTime;
+                    if(totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
+                    }
+                    
+                    else if (totAngle >= 90)
+                    {
+                        open = !open;
+                        isOpened = !isOpened;
+                    }
+                }
+
+                if (gameObject.tag == "RotateUp")
+                {
+                    float angle = 45 * Time.deltaTime;
+                    if (totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, -Vector3.forward, angle);
+                    }
+                    else if (totAngle >= 90)
+                    {
+                        open = !open;
+                        isOpened = !isOpened;
+                    }
+                }
+
+            }
+            else if(open && isOpened)
+            {
+                //Debug.Log("2" + isOpened);
+                if (gameObject.tag != "RotateUp")
+                {
+                    float angle = 45 * Time.deltaTime;
+                    if (totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, -Vector3.up, angle);
+                    }
+                    else if (totAngle >= 90)
+                    {
+                        open = !open;
+                        isOpened = !isOpened;
+                    }
+                }
+                if (gameObject.tag == "RotateUp")
+                {
+                    float angle = 45 * Time.deltaTime;
+                    if (totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, -Vector3.forward, angle);
+                    }
+                    else if (totAngle >= 90)
+                    {
+                        open = !open;
+                        isOpened = !isOpened;
+                    }
                 }
             }
-            /*else
-            {
-                float angle = -45 * Time.deltaTime;
-                totAngle += angle;
-                transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
-                if (totAngle < 0)
-                {
-                    open = !open;
-                }
-            }*/
         }
     }
 }
