@@ -19,8 +19,8 @@ namespace VRTK.Examples
 
         protected void Start()
         {
-            AudioSource Sound = GetComponent<AudioSource>();
-            Sound.Pause();
+            //AudioSource Sound = GetComponent<AudioSource>();
+            //Sound.Pause();
         }
         protected override void Update()
         {
