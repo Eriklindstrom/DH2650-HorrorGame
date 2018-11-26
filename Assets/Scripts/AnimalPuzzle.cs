@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class AnimalPuzzle : MonoBehaviour {
 
-    [SerializeField] GameObject houseControllerObj;
+    [SerializeField] private GameObject houseControllerObj;
+    [SerializeField] private GameObject bunny;
 
-    [SerializeField] GameObject bear;    
-    [SerializeField] GameObject big;
-    [SerializeField] GameObject bunny;
-    [SerializeField] GameObject sheep;
 
     private HouseController houseController;
 
