@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 95037eb88c35f404f8663d27c3945c6d
+timeCreated: 1521244607
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: legs_bottom_low_SeamsColor
+    100002: legs_top_low_SeamsColor
+    100004: //RootNode
+    100006: Mannequin_body_down
+    100008: Mannequin_Chest
+    100010: mannequin_feet_low_SeamsColor
+    100012: mannequin_hands_low_SeamsColor
+    100014: Mannequin_Head
+    100016: mannequin_lower_arm_low
+    100018: mannequin_upper_arm_low_SeamsColor
+    100020: PM3D_Sphere3D1
+    100022: PolyMesh3D_3
+    100024: UMesh_Female_Anatomy_ZBrush1
+    100026: UMesh_Female_Anatomy_ZBrush6_2
+    400000: legs_bottom_low_SeamsColor
+    400002: legs_top_low_SeamsColor
+    400004: //RootNode
+    400006: Mannequin_body_down
+    400008: Mannequin_Chest
+    400010: mannequin_feet_low_SeamsColor
+    400012: mannequin_hands_low_SeamsColor
+    400014: Mannequin_Head
+    400016: mannequin_lower_arm_low
+    400018: mannequin_upper_arm_low_SeamsColor
+    400020: PM3D_Sphere3D1
+    400022: PolyMesh3D_3
+    400024: UMesh_Female_Anatomy_ZBrush1
+    400026: UMesh_Female_Anatomy_ZBrush6_2
+    2300000: legs_bottom_low_SeamsColor
+    2300002: legs_top_low_SeamsColor
+    2300004: Mannequin_body_down
+    2300006: Mannequin_Chest
+    2300008: mannequin_feet_low_SeamsColor
+    2300010: mannequin_hands_low_SeamsColor
+    2300012: Mannequin_Head
+    2300014: mannequin_lower_arm_low
+    2300016: mannequin_upper_arm_low_SeamsColor
+    2300018: PM3D_Sphere3D1
+    2300020: PolyMesh3D_3
+    2300022: UMesh_Female_Anatomy_ZBrush1
+    2300024: UMesh_Female_Anatomy_ZBrush6_2
+    3300000: legs_bottom_low_SeamsColor
+    3300002: legs_top_low_SeamsColor
+    3300004: Mannequin_body_down
+    3300006: Mannequin_Chest
+    3300008: mannequin_feet_low_SeamsColor
+    3300010: mannequin_hands_low_SeamsColor
+    3300012: Mannequin_Head
+    3300014: mannequin_lower_arm_low
+    3300016: mannequin_upper_arm_low_SeamsColor
+    3300018: PM3D_Sphere3D1
+    3300020: PolyMesh3D_3
+    3300022: UMesh_Female_Anatomy_ZBrush1
+    3300024: UMesh_Female_Anatomy_ZBrush6_2
+    4300000: legs_top_low_SeamsColor
+    4300002: legs_bottom_low_SeamsColor
+    4300004: mannequin_feet_low_SeamsColor
+    4300006: mannequin_upper_arm_low_SeamsColor
+    4300008: mannequin_lower_arm_low
+    4300010: mannequin_hands_low_SeamsColor
+    4300012: PolyMesh3D_3
+    4300014: UMesh_Female_Anatomy_ZBrush1
+    4300016: UMesh_Female_Anatomy_ZBrush6_2
+    4300018: PM3D_Sphere3D1
+    4300020: Mannequin_Head
+    4300022: Mannequin_Chest
+    4300024: Mannequin_body_down
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_1
+    second: {fileID: 2100000, guid: 63e08875639a6334c8be10fc40e82f9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_2
+    second: {fileID: 2100000, guid: 4c3cabd840e619c4fa4857e88a7764aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_3
+    second: {fileID: 2100000, guid: 076ae1bdd760ef74cb0aa2e855b217f6, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 28
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

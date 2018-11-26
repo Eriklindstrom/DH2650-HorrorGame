@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class MasterBedroomController : MonoBehaviour {
 
-    [SerializeField]
-    GameObject houseControllerObject;
-    [SerializeField]
-    private GameObject sheepPainting;
+    [SerializeField] private GameObject houseControllerObject;
+    [SerializeField] private GameObject sheepPainting;
+    [SerializeField] private GameObject RotateAroundSheep;   //Empty object on door to rotate around
+    [SerializeField] private GameObject PortraitPainting;
 
     private HouseController houseController;
 
 
     private Quaternion targetRotation;
     private bool paintingFlipped = false;
+    private float time;
 
     // Use this for initialization
     void Start ()
@@ -29,22 +30,28 @@ public class MasterBedroomController : MonoBehaviour {
 
     void Horrify()
     {
-        RotatePainting();
-        if (houseController.madnessPercentage > 0.2 && !paintingFlipped)
-        { }
+        if (houseController.madnessPercentage > 0.2f && !paintingFlipped)
+        {
+            RotatePainting();
+            ScaryPainting();
+        }
             
     }
 
     void RotatePainting()
     {
-        targetRotation *= Quaternion.AngleAxis(60, Vector3.up);
-        Debug.Log(targetRotation);
-        targetRotation = Quaternion.Lerp(transform.rotation, transform.rotation, 10 * Time.deltaTime);
-        /* float minRotation = -45;
-         float maxRotation = 45;
-         Vector3 currentRotation = transform.localRotation.eulerAngles;
-         currentRotation.y = Mathf.Clamp(currentRotation.y, minRotation, maxRotation);
-         Debug.Log(currentRotation.y);
-         sheepPainting.transform.localRotation = Quaternion.Euler(currentRotation);*/
+        time += Time.deltaTime;
+        sheepPainting.transform.RotateAround(RotateAroundSheep.transform.position, Vector3.right, (5.0f * Time.deltaTime));
+        if(time > 1.5f)
+        {
+            paintingFlipped = true;
+        }
+    }
+
+    void ScaryPainting()
+    {
+        MeshRenderer portraitRend = PortraitPainting.GetComponent<MeshRenderer>();
+        portraitRend.material.shader = Shader.Find("Standard");
+        portraitRend.material.SetColor("_Color", Color.red);
     }
 }

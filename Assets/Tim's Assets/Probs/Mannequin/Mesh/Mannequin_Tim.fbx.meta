@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 59be8dc3ab23fb04bb805de72da15771
+timeCreated: 1521223436
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: calf_l
+    100002: calf_r
+    100004: calf_twist_01_l
+    100006: calf_twist_01_r
+    100008: clavicle_l
+    100010: clavicle_r
+    100012: foot_l
+    100014: foot_r
+    100016: hand_l
+    100018: hand_r
+    100020: head
+    100022: index_01_r
+    100024: index_02_r
+    100026: index_03_r
+    100028: legs_top_low_SeamsColor1
+    100030: lowerarm_l
+    100032: lowerarm_r
+    100034: lowerarm_twist_01_r
+    100036: //RootNode
+    100038: middle_01_r
+    100040: middle_02_r
+    100042: middle_03_r
+    100044: neck_01
+    100046: pelvis
+    100048: pinky_01_r
+    100050: pinky_02_r
+    100052: pinky_03_r
+    100054: ring_01_r
+    100056: ring_02_r
+    100058: ring_03_r
+    100060: root
+    100062: spine_01
+    100064: spine_02
+    100066: spine_03
+    100068: thigh_l
+    100070: thigh_r
+    100072: thigh_twist_01_l
+    100074: thigh_twist_01_r
+    100076: thumb_01_r
+    100078: thumb_02_r
+    100080: thumb_03_r
+    100082: upperarm_l
+    100084: upperarm_r
+    100086: upperarm_twist_01_r
+    400000: calf_l
+    400002: calf_r
+    400004: calf_twist_01_l
+    400006: calf_twist_01_r
+    400008: clavicle_l
+    400010: clavicle_r
+    400012: foot_l
+    400014: foot_r
+    400016: hand_l
+    400018: hand_r
+    400020: head
+    400022: index_01_r
+    400024: index_02_r
+    400026: index_03_r
+    400028: legs_top_low_SeamsColor1
+    400030: lowerarm_l
+    400032: lowerarm_r
+    400034: lowerarm_twist_01_r
+    400036: //RootNode
+    400038: middle_01_r
+    400040: middle_02_r
+    400042: middle_03_r
+    400044: neck_01
+    400046: pelvis
+    400048: pinky_01_r
+    400050: pinky_02_r
+    400052: pinky_03_r
+    400054: ring_01_r
+    400056: ring_02_r
+    400058: ring_03_r
+    400060: root
+    400062: spine_01
+    400064: spine_02
+    400066: spine_03
+    400068: thigh_l
+    400070: thigh_r
+    400072: thigh_twist_01_l
+    400074: thigh_twist_01_r
+    400076: thumb_01_r
+    400078: thumb_02_r
+    400080: thumb_03_r
+    400082: upperarm_l
+    400084: upperarm_r
+    400086: upperarm_twist_01_r
+    4300000: legs_top_low_SeamsColor1
+    9500000: //RootNode
+    13700000: legs_top_low_SeamsColor1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_1
+    second: {fileID: 2100000, guid: 63e08875639a6334c8be10fc40e82f9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_2
+    second: {fileID: 2100000, guid: 4c3cabd840e619c4fa4857e88a7764aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manequin_mat_3
+    second: {fileID: 2100000, guid: 076ae1bdd760ef74cb0aa2e855b217f6, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

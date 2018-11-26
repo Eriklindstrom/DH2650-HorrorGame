@@ -12,6 +12,8 @@ namespace VRTK.Examples
     {
 
         private bool isUsing = false;
+        public Component[] rb;
+        private bool smashedPiggy = false;
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
@@ -24,21 +26,6 @@ namespace VRTK.Examples
             base.StopUsing(usingObject);
             isUsing = false;
         }
-
-        public Component[] rb;
-
-        /* public override void StartUsing(VRTK_InteractUse usingObject)
-         {
-
-         }
-
-        */
-        // Use this for initialization
-        /* void Start()
-         {
-
-         }
-         */
 
         protected override void Update()
         {
@@ -54,6 +41,7 @@ namespace VRTK.Examples
         {
             if (col.gameObject.tag != "Untagged")
             {
+                smashedPiggy = true;
                 Debug.Log("smashpiggy");
                 //rb = GetComponentsInChildren<Rigidbody>();
                 foreach (Rigidbody body in rb)
