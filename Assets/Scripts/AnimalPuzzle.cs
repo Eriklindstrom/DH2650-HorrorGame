@@ -6,6 +6,7 @@ public class AnimalPuzzle : MonoBehaviour {
 
     [SerializeField] private GameObject houseControllerObj;
     [SerializeField] private GameObject bunny;
+    [SerializeField] float puzzleReward = 20.0f;
 
 
     private HouseController houseController;
@@ -34,7 +35,7 @@ public class AnimalPuzzle : MonoBehaviour {
 
         if(animalsOnShelf == 4 && !puzzleSolved)
         {
-            houseController.madness -= 20;
+            houseController.madness -= puzzleReward;
             puzzleSolved = true;
         }
 	}
