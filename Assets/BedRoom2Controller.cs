@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BedRoom2Controller : MonoBehaviour {
 
+    [SerializeField] private GameObject Mannequin;
     [SerializeField] private GameObject CurtainsLeft;
     [SerializeField] private GameObject houseControllerObject;
     [SerializeField] private GameObject bedroomDoor;
@@ -27,9 +28,10 @@ public class BedRoom2Controller : MonoBehaviour {
 
     void Horrify()
     {
-        if (houseController.madnessPercentage > 0.2f && OpenedRoom)
+        if (houseController.madnessPercentage > 0.2f)// && OpenedRoom)
         {
             RemoveCurtains();
+            Mannequin.SetActive(true);
         }
 
     }
