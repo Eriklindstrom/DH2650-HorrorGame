@@ -9,19 +9,24 @@ public class HouseController : MonoBehaviour {
     \******************/
 
     public float madness;
+    public AudioClip[] themeSongs;
     [SerializeField] float madnessThreshold = 10;
     [SerializeField] GameObject flamePrefab;
 
     /**********************\
         Non-configurable
     \**********************/
-
+    
     [HideInInspector] public float madnessPercentage = 0.0f;
     [HideInInspector] public bool lightsOut = false;
 
     private KeyValuePair<GameObject, float>[] electricLights;
     private KeyValuePair<GameObject, float>[] candles;
     private GameObject[] candleFlames;
+    private AudioSource[] themePlayer;
+    private bool[] themePlaying;
+    private float[] percentageSwitch;
+    private int toggleMusic = 1;
 
     private float flickerTimer = 0.0f;
 
@@ -53,10 +58,24 @@ public class HouseController : MonoBehaviour {
             newFlame.transform.localPosition = Vector3.zero;
             newFlame.transform.localPosition += new Vector3(0, candleObjects[i].GetComponent<MeshFilter>().mesh.bounds.max.y, 0);
             newFlame.SetActive(false);
-
+             
             candles[i] = new KeyValuePair<GameObject, float>(candleObjects[i], Time.fixedTime);
             candleFlames[i] = newFlame;
         }
+
+        //Sound player for theme
+        themePlayer = GameObject.FindGameObjectsWithTag(GameConstants.TAG_THEME_PLAYER)[0].GetComponents<AudioSource>();
+        themePlaying = new bool[themeSongs.Length];
+        for (int i = 0; i < themeSongs.Length; i++)
+        {
+            themePlaying[i] = false;
+        }
+        percentageSwitch = new float[themeSongs.Length];
+        for (int i = 0; i < themeSongs.Length; i++)
+        {
+            percentageSwitch[i] = 1.0f / themeSongs.Length * i;
+        }
+        themePlayer[toggleMusic].clip = themeSongs[0];
     }
 	
 	void Update ()
@@ -71,8 +90,36 @@ public class HouseController : MonoBehaviour {
     {
         DimLights();
         FlickerCandles();
-        
-        //TODO add sounds       
+
+        //TODO add sounds   
+        PlayTheme();
+    }
+
+    void PlayTheme()
+    {
+        for (int i = themeSongs.Length-1; i > -1; i--)
+        {
+            print(madnessPercentage);
+            if (madnessPercentage >= 1f|| (madnessPercentage > percentageSwitch[i])) // Should play this song!
+            {
+                //if (themePlaying[i]) break;
+                for (int p = 0; p < themePlaying.Length; p++) { themePlaying[p] = false; }
+                print(i);
+                themePlaying[i] = true;
+                themePlayer[toggleMusic].loop = false;
+                if (themePlayer[toggleMusic].isPlaying)
+                {
+                    themePlaying[i] = false;
+                    break;
+                }
+                toggleMusic = 1 - toggleMusic;
+                themePlayer[toggleMusic].clip = themeSongs[i];
+                double duration = (double)themeSongs[i].samples / themeSongs[i].frequency;
+
+                themePlayer[toggleMusic].PlayScheduled(AudioSettings.dspTime);
+                break;
+            }
+        }
     }
 
     //Lights get gradully dimmer with increasing madness level
