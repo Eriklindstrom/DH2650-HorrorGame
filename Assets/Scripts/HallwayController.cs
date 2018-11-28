@@ -49,7 +49,7 @@ public class HallwayController : MonoBehaviour {
     void MoveBook()
     {
         GameObject topBook = books[books.Count - 1];
-        if (houseController.madnessPercentage > 0.6 && topBook.transform.position.y >= 0.2)
+        if (houseController.madnessPercentage > 0.3 && topBook.transform.position.y >= 0.2)
             topBook.transform.position += new Vector3(0, 0,-0.0001f);
     }
 
