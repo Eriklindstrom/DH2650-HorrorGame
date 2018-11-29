@@ -27,6 +27,6 @@ public class BookController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger " + other.gameObject.name);
+        //Debug.Log("trigger " + other.gameObject.name);
     }
 }

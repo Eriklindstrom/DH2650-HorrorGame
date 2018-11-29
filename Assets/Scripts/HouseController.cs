@@ -99,12 +99,12 @@ public class HouseController : MonoBehaviour {
     {
         for (int i = themeSongs.Length-1; i > -1; i--)
         {
-            print(madnessPercentage);
+            //print(madnessPercentage);
             if (madnessPercentage >= 1f|| (madnessPercentage > percentageSwitch[i])) // Should play this song!
             {
                 //if (themePlaying[i]) break;
                 for (int p = 0; p < themePlaying.Length; p++) { themePlaying[p] = false; }
-                print(i);
+                //print(i);
                 themePlaying[i] = true;
                 themePlayer[toggleMusic].loop = false;
                 if (themePlayer[toggleMusic].isPlaying)
