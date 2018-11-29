@@ -76,7 +76,7 @@ public class BathroomController : MonoBehaviour {
         if (houseController.madnessPercentage > 0.85f && !bloodInShower)
         {
             Color myColor = new Color();
-            ColorUtility.TryParseHtmlString("#990000", out myColor);
+            ColorUtility.TryParseHtmlString("#330000", out myColor);
             showerHandler.SetColor(myColor);
             bloodInShower = true;
         }
