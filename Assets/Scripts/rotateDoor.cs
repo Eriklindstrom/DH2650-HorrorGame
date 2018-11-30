@@ -19,6 +19,7 @@ namespace VRTK.Examples
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
+            base.StartUsing(usingObject);
             open = !open;
         }
 
@@ -28,11 +29,9 @@ namespace VRTK.Examples
             base.Update();
             if (open && !isOpened)
             {
-                //Debug.Log("1" + isOpened);
-                //Debug.Log(isOpened);
-                if (gameObject.tag != "RotateUp")
+                if (gameObject.tag == "DoorLeft")
                 {
-                    float angle = 45 * Time.deltaTime;
+                    float angle = 75 * Time.deltaTime;
                     if(totAngle <= 90)
                     {
                         totAngle += angle;
@@ -41,12 +40,30 @@ namespace VRTK.Examples
                     
                     else if (totAngle >= 90)
                     {
-                        open = !open;
-                        isOpened = !isOpened;
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = true;
                     }
                 }
 
-                if (gameObject.tag == "RotateUp")
+                if (gameObject.tag == "DoorRight")
+                {
+                    float angle = 75 * Time.deltaTime;
+                    if (totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, -Vector3.up, angle);
+                    }
+
+                    else if (totAngle >= 90)
+                    {
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = true;
+                    }
+                }
+
+                    if (gameObject.tag == "RotateUp")
                 {
                     float angle = 45 * Time.deltaTime;
                     if (totAngle <= 90)
@@ -56,18 +73,18 @@ namespace VRTK.Examples
                     }
                     else if (totAngle >= 90)
                     {
-                        open = !open;
-                        isOpened = !isOpened;
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = true;
                     }
                 }
 
             }
-            else if(open && isOpened)
+            else if(!open && isOpened)
             {
-                //Debug.Log("2" + isOpened);
-                if (gameObject.tag != "RotateUp")
+                if (gameObject.tag == "DoorLeft")
                 {
-                    float angle = 45 * Time.deltaTime;
+                    float angle = 75 * Time.deltaTime;
                     if (totAngle <= 90)
                     {
                         totAngle += angle;
@@ -75,13 +92,30 @@ namespace VRTK.Examples
                     }
                     else if (totAngle >= 90)
                     {
-                        open = !open;
-                        isOpened = !isOpened;
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = false;
+                    }
+                }
+
+                if (gameObject.tag == "DoorRight")
+                {
+                    float angle = 75 * Time.deltaTime;
+                    if (totAngle <= 90)
+                    {
+                        totAngle += angle;
+                        transform.RotateAround(RotateAround.transform.position, Vector3.up, angle);
+                    }
+                    else if (totAngle >= 90)
+                    {
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = false;
                     }
                 }
                 if (gameObject.tag == "RotateUp")
                 {
-                    float angle = 45 * Time.deltaTime;
+                    float angle = 75 * Time.deltaTime;
                     if (totAngle <= 90)
                     {
                         totAngle += angle;
@@ -89,8 +123,9 @@ namespace VRTK.Examples
                     }
                     else if (totAngle >= 90)
                     {
-                        open = !open;
-                        isOpened = !isOpened;
+                        //open = !open;
+                        totAngle = 0;
+                        isOpened = false;
                     }
                 }
             }
