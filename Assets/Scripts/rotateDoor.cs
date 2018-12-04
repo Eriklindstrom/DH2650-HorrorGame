@@ -23,8 +23,16 @@ namespace VRTK.Examples
             open = !open;
         }
 
+        
+        /*public void Start()
+        {
+            GameObject BedRoomController = GameObject.Find("Master Bedroom");
+            MasterBedroomController controller = BedRoomController.GetComponent<MasterBedroomController>();
+            MasterBedroomController.paintingFlipped = true;
+        }*/
 
-        protected override void Update()
+
+    protected override void Update()
         {
             base.Update();
             if (open && !isOpened)
@@ -63,7 +71,7 @@ namespace VRTK.Examples
                     }
                 }
 
-                    if (gameObject.tag == "RotateUp")
+                if (gameObject.tag == "RotateUp")
                 {
                     float angle = 45 * Time.deltaTime;
                     if (totAngle <= 90)
@@ -115,11 +123,11 @@ namespace VRTK.Examples
                 }
                 if (gameObject.tag == "RotateUp")
                 {
-                    float angle = 75 * Time.deltaTime;
+                    float angle = 45 * Time.deltaTime;
                     if (totAngle <= 90)
                     {
                         totAngle += angle;
-                        transform.RotateAround(RotateAround.transform.position, -Vector3.forward, angle);
+                        transform.RotateAround(RotateAround.transform.position, Vector3.forward, angle);
                     }
                     else if (totAngle >= 90)
                     {

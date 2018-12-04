@@ -13,7 +13,7 @@ public class MasterBedroomController : MonoBehaviour {
 
 
     private Quaternion targetRotation;
-    private bool paintingFlipped = false;
+    public bool paintingFlipped = false;
     private float time;
 
     // Use this for initialization
