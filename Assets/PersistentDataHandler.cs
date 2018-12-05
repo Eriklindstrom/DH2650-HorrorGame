@@ -1,43 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PersistentDataHandler : MonoBehaviour {
 
+    [SerializeField] private GameObject goUpCollider;
     [SerializeField] private GameObject HouseController;
     [SerializeField] private GameObject Player;
-    //public float madness = HouseController.GetComponent().Madness;
-    //public float MadnessLevel;
+    public float madness;
+    public Vector3 posVec;
+    
     private float x, y, z;
     
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        //MadnessLevel = GetComponent<HouseController>().madnessPercentage;
+        madness = GetComponent<HouseController>().madness;
     }
+
+    void position_load()
+    {
+        gameObject.GetComponent<PersistentDataHandler>().LoadData();
+        SceneManager.LoadScene(0);
+    }
+
+
+    void OnTriggerEnter(Collider ChangeScene)
+    {
+        //anim.Play();        //Not set up
+        position_load();
+        //SceneManager.LoadScene(0);
+    }
+
     void Update()
     {
-        //Debug.Log(GetComponent<HouseController>().madnessPercentage);
+        madness = GetComponent<HouseController>().madness;
         SaveData();
+        posVec.x = Player.transform.position.x;
+        posVec.y = Player.transform.position.y;
+        posVec.z = Player.transform.position.z;
+        //Vector3 posVec = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
+
     }
         
     void SaveData()
     {
-        PlayerPrefs.SetFloat("Madness", GetComponent<HouseController>().madnessPercentage);
-        /*PlayerPrefs.SetFloat("xc", Player.translate.transform.x);
-        PlayerPrefs.SetFloat("yc", Player.translate.transform.y);
-        PlayerPrefs.SetFloat("zc", Player.translate.transform.z);*/
-        x = PlayerPrefs.GetFloat("x");
-        y = PlayerPrefs.GetFloat("y");
-        z = PlayerPrefs.GetFloat("z");
-        Vector3 posVec = new Vector3(x, y, z);
-        Player.transform.position = posVec;
+        PlayerPrefs.SetFloat("Madness", madness);
+        PlayerPrefs.SetFloat("PlayerX", Player.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", Player.transform.position.y);
+        PlayerPrefs.SetFloat("PlayerZ", Player.transform.position.z);
+        //Debug.Log(Player.transform.position.x);
     }
 
 
-    void LoadData()
+    public void LoadData()
     {
-        PlayerPrefs.GetFloat("Madness", 0); //Default 0 if madness is null
-        posVec = new Vector3(PlayerPrefs.GetFloat("c"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
+        Debug.Log(PlayerPrefs.GetFloat("Madness"));
+        PlayerPrefs.GetFloat("Madness"); //Default 0 if madness is null
+        //posVec = new Vector3(PlayerPrefs.GetFloat("c"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
+        Player.transform.position = new Vector3(PlayerPrefs.GetFloat("PlayerX"), PlayerPrefs.GetFloat("PlayerY"), PlayerPrefs.GetFloat("PlayerZ"));
+
     }
 }

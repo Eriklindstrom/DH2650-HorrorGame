@@ -4,70 +4,78 @@
 
     public class ShowerHandler : VRTK_InteractableObject
     {
+        [SerializeField] GameObject bathroomControllerObj;
+
         private bool open = false;
         private bool horrorOverride = false;
-        private Color originalColor;
+        private bool bloodified = false;
 
+        private Color originalColor;
         private ParticleSystem pSys;
-        private AudioSource Sound;
+        private AudioSource sound;
+        private BathroomController bathroomController;
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
-
             base.StartUsing(usingObject);
             open = !open;
+
+            if (horrorOverride)
+            {
+                if (bloodified) return;
+
+                Color bloodColor = new Color();
+                ColorUtility.TryParseHtmlString("#330000", out bloodColor);
+                SetColor(bloodColor);
+
+                bathroomController.BloodSplatter();
+                bloodified = true;
+
+                return;
+            }
+                        
+            if (open)
+            {
+                sound.Play(0);
+                pSys.Play();
+            }
+            else
+            {
+                sound.Stop();
+                pSys.Stop();
+            }
         }
 
         protected void Start()
         {
-            //transform.GetChild(0).gameObject.SetActive(false);
-            AudioSource Sound = GetComponent<AudioSource>();
-            Sound.Pause();
-            ParticleSystem pSys = gameObject.GetComponentInChildren<ParticleSystem>();
+            sound = GetComponent<AudioSource>();
+            pSys = gameObject.GetComponentInChildren<ParticleSystem>();
+            bathroomController = bathroomControllerObj.GetComponent<BathroomController>();            
+            
+            sound.Pause();
             pSys.Pause();
-
             originalColor = pSys.startColor;
-        }
-
-        protected override void Update()
-        {
-            if (horrorOverride) return;
-
-            base.Update();
-            if (open)
-            {
-                //transform.GetChild(0).gameObject.SetActive(true);
-                GetComponent<AudioSource>().Play(0);
-                gameObject.GetComponentInChildren<ParticleSystem>().Play();
-            }
-            else
-            {
-                //transform.GetChild(0).gameObject.SetActive(false);
-                GetComponent<AudioSource>().Stop();
-                gameObject.GetComponentInChildren<ParticleSystem>().Stop();
-            }
         }
 
         public void RemoteStart()
         {
             horrorOverride = true;
 
-            var particles = gameObject.GetComponentInChildren<ParticleSystem>();
-            if (particles.isPlaying)
+            if (pSys.isPlaying)
                 return;
 
             GetComponent<AudioSource>().Play(0);
-            particles.Play();            
+            pSys.Play();            
         }
 
         public void SetColor(Color color)
         {
-            gameObject.GetComponentInChildren<ParticleSystem>().startColor = color;
+            pSys.startColor = color;
         }
 
         public void ResetColor()
         {
-            gameObject.GetComponentInChildren<ParticleSystem>().startColor = originalColor;
+            pSys.startColor = originalColor;
         }
     }
 }

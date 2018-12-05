@@ -8,7 +8,7 @@ public class ChangeFloorUp : MonoBehaviour {
     [SerializeField] private GameObject goUpCollider;
     //[SerializeField] private Animation anim;
 
-    public float pX;
+    /*public float pX;
     public float pY;
     public float pZ;
 
@@ -39,9 +39,16 @@ public class ChangeFloorUp : MonoBehaviour {
         PlayerPrefs.SetInt("Saved", 1);
         // You need to actually save the values!
         PlayerPrefs.Save();
+    }*/
+
+    void Start()
+    {
+        //GetComponent<PersistentDataHandler>().LoadData();
     }
+
     void position_load()
     {
+        gameObject.GetComponent<PersistentDataHandler>().LoadData();
         SceneManager.LoadScene(0);
     }
 

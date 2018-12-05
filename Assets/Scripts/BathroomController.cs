@@ -37,7 +37,6 @@ public class BathroomController : MonoBehaviour {
     void Horrify()
     {
         ShowerEffects();
-        BloodSplatter();
         MainCourse();
     }
 
@@ -50,9 +49,9 @@ public class BathroomController : MonoBehaviour {
             brain.SetActive(true);
     }
 
-    void BloodSplatter()
+    public void BloodSplatter()
     {
-        if(houseController.madnessPercentage > 0.85 && !bloodOnFloor)
+        if(!bloodOnFloor)
         {
             StartCoroutine(houseController.LightsOut(0.3f));
 
@@ -67,18 +66,7 @@ public class BathroomController : MonoBehaviour {
 
     void ShowerEffects()
     {
-        if (houseController.madnessPercentage > 0.62f && !showerStarted)
-        {
+        if (houseController.madnessPercentage > 0.62f)
             showerHandler.RemoteStart();
-            showerStarted = true;
-        }
-
-        if (houseController.madnessPercentage > 0.85f && !bloodInShower)
-        {
-            Color myColor = new Color();
-            ColorUtility.TryParseHtmlString("#330000", out myColor);
-            showerHandler.SetColor(myColor);
-            bloodInShower = true;
-        }
     }
 }

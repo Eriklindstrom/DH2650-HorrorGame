@@ -206,8 +206,10 @@ public class HouseController : MonoBehaviour {
      Lighst flicker out for the provided number of seconds */
     public IEnumerator LightsOut(float seconds)
     {
+        float nextFlicker = seconds - (seconds / 3);
         lightsOut = true;
         flickerTimer = 0.0f;
+        
 
         //Disable lights
         foreach (var currentLight in electricLights)
@@ -219,6 +221,17 @@ public class HouseController : MonoBehaviour {
         while (flickerTimer <= seconds && lightsOut)
         {
             flickerTimer += Time.deltaTime;
+
+            if(flickerTimer >= nextFlicker)
+            {
+                Debug.Log("Flickering");
+                foreach (var currentLight in electricLights)
+                {
+                    currentLight.Key.SetActive(!currentLight.Key.activeSelf);
+                }
+                nextFlicker += ((seconds - flickerTimer) / 3);
+            }            
+
             yield return null;
         }
         

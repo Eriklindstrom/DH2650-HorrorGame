@@ -21,8 +21,15 @@ namespace VRTK.Examples
 
         protected void Start()
         {
-            AudioSource Sound = GetComponent<AudioSource>();
-            Sound.Pause();
+            try {
+                AudioSource Sound = GetComponent<AudioSource>();
+                Sound.Pause();
+            }
+            catch (MissingComponentException)
+            {
+                Debug.Log("No sound on all interactable object. No worries, don't need sound on everything");
+            }
+                
         }
         protected override void Update()
         {
