@@ -27,6 +27,8 @@ public class HouseController : MonoBehaviour {
     private bool[] themePlaying;
     private float[] percentageSwitch;
     private int toggleMusic = 1;
+    private double musicStarted;
+    private double musicDuration;
 
     private float flickerTimer = 0.0f;
 
@@ -76,6 +78,9 @@ public class HouseController : MonoBehaviour {
             percentageSwitch[i] = 1.0f / themeSongs.Length * i;
         }
         themePlayer[toggleMusic].clip = themeSongs[0];
+        musicStarted = AudioSettings.dspTime;
+        themePlayer[toggleMusic].PlayScheduled(AudioSettings.dspTime);
+        musicDuration = (double)themeSongs[0].samples / themeSongs[0].frequency;
     }
 	
 	void Update ()
@@ -106,18 +111,22 @@ public class HouseController : MonoBehaviour {
                 for (int p = 0; p < themePlaying.Length; p++) { themePlaying[p] = false; }
                 //print(i);
                 themePlaying[i] = true;
-                themePlayer[toggleMusic].loop = false;
+                if (musicStarted + musicDuration - AudioSettings.dspTime < 1) //Que up next song
+                {
+                    print("Next song queued");
+                    toggleMusic = 1 - toggleMusic;
+                    themePlayer[toggleMusic].clip = themeSongs[i];
+                    themePlayer[toggleMusic].PlayScheduled(musicStarted + musicDuration);
+                    musicStarted = musicStarted + musicDuration;
+                    musicDuration = (double)themeSongs[i].samples / themeSongs[i].frequency;
+                }
+                /*
                 if (themePlayer[toggleMusic].isPlaying)
                 {
                     themePlaying[i] = false;
                     break;
-                }
-                toggleMusic = 1 - toggleMusic;
-                themePlayer[toggleMusic].clip = themeSongs[i];
-                double duration = (double)themeSongs[i].samples / themeSongs[i].frequency;
-
-                themePlayer[toggleMusic].PlayScheduled(AudioSettings.dspTime);
-                break;
+                }*/
+                
             }
         }
     }
