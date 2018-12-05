@@ -38,6 +38,6 @@ public class PersistentDataHandler : MonoBehaviour {
     void LoadData()
     {
         PlayerPrefs.GetFloat("Madness", 0); //Default 0 if madness is null
-        posVec = new Vector3(PlayerPrefs.GetFloat("c"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
+        //posVec = new Vector3(PlayerPrefs.GetFloat("c"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
     }
 }

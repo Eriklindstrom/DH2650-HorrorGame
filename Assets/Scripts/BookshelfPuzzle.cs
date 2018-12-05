@@ -6,6 +6,7 @@ public class BookshelfPuzzle : MonoBehaviour {
 
     [SerializeField] private int rewardPerBookReturned = 10;
     [SerializeField] private GameObject houseControllerObj;
+    [SerializeField] GameObject bookNote;
 
     private HouseController houseController;
 
@@ -36,6 +37,7 @@ public class BookshelfPuzzle : MonoBehaviour {
     {
         puzzleStarted = true;
         allTimeMaxNumberOfBooks = currentNumberOfBooks;
+        bookNote.SetActive(true);
     }
 
     public bool IsPuzzleStarted()
