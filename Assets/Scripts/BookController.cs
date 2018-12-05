@@ -15,7 +15,9 @@ public class BookController : MonoBehaviour {
     void Start()
     {
         puzzleController = bookGameObj.GetComponent<BookshelfPuzzle>();
-        hallwayController = hallwayCtrlObj.GetComponent<HallwayController>();
+
+        if(mainBook)
+            hallwayController = hallwayCtrlObj.GetComponent<HallwayController>();
     }
 
     void OnCollisionEnter(Collision other)
@@ -23,7 +25,7 @@ public class BookController : MonoBehaviour {
         GetComponent<AudioSource>().volume = 0.1f;
         GetComponent<AudioSource>().Play();
 
-        if(other.gameObject.tag == "Floor" && !puzzleController.IsPuzzleStarted())
+        if(mainBook && other.gameObject.tag == "Floor" && !puzzleController.IsPuzzleStarted())
         {
             puzzleController.StartPuzzle();
             hallwayController.bookPuzzleActive = true;
