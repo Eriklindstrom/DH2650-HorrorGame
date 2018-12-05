@@ -7,7 +7,9 @@ public class HallwayController : MonoBehaviour {
     [SerializeField] GameObject houseControllerObject;
     [SerializeField] GameObject rugObject;
     [SerializeField] List<GameObject> books;
-    [SerializeField] List<GameObject> armCharis;    
+    [SerializeField] List<GameObject> armCharis;
+    [SerializeField] GameObject scaryNote;
+    [SerializeField] GameObject scaryNote2;
 
     [HideInInspector] public bool bookPuzzleActive = false;
 
@@ -31,6 +33,10 @@ public class HallwayController : MonoBehaviour {
         MoveBook();
 
         if (houseController.madnessPercentage > 0.2 && !chairsFlipped) FlipChairs();
+        if (houseController.madnessPercentage > 0.45)
+            scaryNote2.SetActive(true);
+        if (houseController.madnessPercentage > 0.7)
+            scaryNote.SetActive(true);
     }
 
     void RotateCarpet()
