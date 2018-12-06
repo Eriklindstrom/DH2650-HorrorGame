@@ -7,7 +7,8 @@ public class IfYouGetHereYouAreDead : MonoBehaviour {
     [SerializeField] private GameObject Mannequin;
     [SerializeField] private GameObject MannequinParent;
     [SerializeField] private GameObject PlayerCamera;
-    [SerializeField] private Light lt; 
+    [SerializeField] private Light lt;
+    [SerializeField] private AudioSource audio;
 
     private bool isFollowing = false;
 
@@ -19,7 +20,7 @@ public class IfYouGetHereYouAreDead : MonoBehaviour {
         Vector3 PlayerPos = new Vector3(PlayerCamera.transform.position.x, PlayerCamera.transform.position.y - 1.0f, PlayerCamera.transform.position.z);
         if(isFollowing)
         {
-            Mannequin.transform.position = Vector3.MoveTowards(Mannequin.transform.position, PlayerPos, 0.02f);
+            Mannequin.transform.position = Vector3.MoveTowards(Mannequin.transform.position, PlayerPos, 0.03f);
 
 
             Vector3 targetDir = PlayerCamera.transform.position - MannequinParent.transform.position;
@@ -34,6 +35,7 @@ public class IfYouGetHereYouAreDead : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        audio.Play(0);
         isFollowing = true;
         lt.enabled = true;
     } 
