@@ -24,13 +24,8 @@
             {
                 if (bloodified) return;
 
-                Color bloodColor = new Color();
-                ColorUtility.TryParseHtmlString("#330000", out bloodColor);
-                SetColor(bloodColor);
-
-                bathroomController.BloodSplatter();
+                bathroomController.TriggerHorror();
                 bloodified = true;
-
                 return;
             }
                         
@@ -67,6 +62,7 @@
             GetComponent<AudioSource>().Play(0);
             pSys.Play();            
         }
+
 
         public void SetColor(Color color)
         {

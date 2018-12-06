@@ -25,6 +25,17 @@
             GetComponent<AudioSource>().Play(0);
         }
 
+        public void RemoteSlam(Vector3 interacter)
+        {
+            base.StartUsing(usingObject); //TODO, maybe?
+            SetDoorRotation(interacter);
+            SetRotation();
+            open = !open;
+
+            //TODO play slam!
+            GetComponent<AudioSource>().Play(0);
+        }
+
         protected void Start()
         {
             defaultRotation = transform.eulerAngles;
