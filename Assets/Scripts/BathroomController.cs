@@ -31,7 +31,7 @@ public class BathroomController : MonoBehaviour {
         openableDoor = door.GetComponent<VRTK.Examples.Openable_Door>();
 
         doorSlamClip.clip = MakeSubclip(doorSlamClip.clip, 1.0f, 2.0f);
-        growlClip.clip = MakeSubclip(growlClip.clip, 0.0f, 2.0f);
+        growlClip.clip = MakeSubclip(growlClip.clip, 1.0f, 2.0f);
 
         showerStarted = false;
         bloodInShower = false;
@@ -94,18 +94,27 @@ public class BathroomController : MonoBehaviour {
     private IEnumerator TriggerHorrorRoutine()
     {
         //Wait, then slam door
+        ticTocClip.volume = 10;
         ticTocClip.Play();
-        while (horrorTimer <= 1)
+        while (horrorTimer <= 3)
         {
             horrorTimer += Time.deltaTime;
             yield return null;
         }
-        SlamDoor();
+        SlamDoor();        
         ticTocClip.Stop();
+        doorSlamClip.volume = 10;
         doorSlamClip.Play();
 
+        while(horrorTimer <= 4)
+        {
+            horrorTimer += Time.deltaTime;
+            yield return null;
+        }
+        openableDoor.enabled = false;
+
         //Wait, all seems quited, then trigger horror
-        while (horrorTimer <= 4)
+        while (horrorTimer <= 7)
         {
             horrorTimer += Time.deltaTime;
             yield return null;
@@ -116,7 +125,16 @@ public class BathroomController : MonoBehaviour {
         Color bloodColor = new Color();
         ColorUtility.TryParseHtmlString("#330000", out bloodColor);
         showerHandler.SetColor(bloodColor);
+        growlClip.volume = 10;
         growlClip.Play();
+
+
+        while (horrorTimer <= 9)
+        {
+            horrorTimer += Time.deltaTime;
+            yield return null;
+        }
+        openableDoor.enabled = true;
 
         yield break;
     }
