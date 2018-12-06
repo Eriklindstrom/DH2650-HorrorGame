@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: abdf7c7b55ecc3646b78f6d481a987ed
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: base
+    100002: brushes
+    100004: cold
+    100006: dish
+    100008: doors
+    100010: doors.001
+    100012: doors.002
+    100014: faucets
+    100016: handles
+    100018: handles.001
+    100020: hot
+    100022: LeftFaucet
+    100024: RightFaucet
+    100026: Shelf
+    100028: Shelf.001
+    100030: sink
+    100032: soap
+    100034: stand
+    100036: toothbrush_1
+    100038: toothbrush_2
+    100040: //RootNode
+    400000: base
+    400002: brushes
+    400004: cold
+    400006: dish
+    400008: doors
+    400010: doors.001
+    400012: doors.002
+    400014: faucets
+    400016: handles
+    400018: handles.001
+    400020: hot
+    400022: LeftFaucet
+    400024: RightFaucet
+    400026: Shelf
+    400028: Shelf.001
+    400030: sink
+    400032: soap
+    400034: stand
+    400036: toothbrush_1
+    400038: toothbrush_2
+    400040: //RootNode
+    2100000: base_material
+    2300000: base
+    2300002: brushes
+    2300004: cold
+    2300006: dish
+    2300008: doors
+    2300010: doors.001
+    2300012: doors.002
+    2300014: faucets
+    2300016: handles
+    2300018: handles.001
+    2300020: hot
+    2300022: LeftFaucet
+    2300024: RightFaucet
+    2300026: Shelf
+    2300028: Shelf.001
+    2300030: sink
+    2300032: soap
+    2300034: stand
+    2300036: toothbrush_1
+    2300038: toothbrush_2
+    3300000: base
+    3300002: brushes
+    3300004: cold
+    3300006: dish
+    3300008: doors
+    3300010: doors.001
+    3300012: doors.002
+    3300014: faucets
+    3300016: handles
+    3300018: handles.001
+    3300020: hot
+    3300022: LeftFaucet
+    3300024: RightFaucet
+    3300026: Shelf
+    3300028: Shelf.001
+    3300030: sink
+    3300032: soap
+    3300034: stand
+    3300036: toothbrush_1
+    3300038: toothbrush_2
+    4300000: handles.001
+    4300002: Shelf.001
+    4300004: doors.002
+    4300006: doors.001
+    4300008: soap
+    4300010: dish
+    4300012: base
+    4300014: doors
+    4300016: toothbrush_1
+    4300018: stand
+    4300020: brushes
+    4300022: hot
+    4300024: toothbrush_2
+    4300026: faucets
+    4300028: sink
+    4300030: handles
+    4300032: cold
+    4300034: RightFaucet
+    4300036: LeftFaucet
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
