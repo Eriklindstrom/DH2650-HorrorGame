@@ -6,12 +6,13 @@ public class AnimalPuzzle : MonoBehaviour {
 
     [SerializeField] private GameObject houseControllerObj;
     [SerializeField] private GameObject bunny;
+    [SerializeField] private GameObject topDrawer;
     [SerializeField] float puzzleReward = 20.0f;
 
 
     private HouseController houseController;
 
-    private bool bunnySpawned;
+    private bool bunnySpawned = true;
     private bool puzzleSolved;
 
     private int animalsOnShelf = 0;
@@ -37,6 +38,7 @@ public class AnimalPuzzle : MonoBehaviour {
         {
             houseController.madness -= puzzleReward;
             puzzleSolved = true;
+            topDrawer.transform.position += new Vector3(0.0f, 0.0f, 11.0f);
         }
 	}
 

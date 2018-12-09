@@ -39,6 +39,7 @@ namespace VRTK.Examples
 
         void OnCollisionEnter(Collision col)
         {
+            Debug.Log("Collision with piggy");
             if (col.gameObject.tag != "Untagged")
             {
                 smashedPiggy = true;
