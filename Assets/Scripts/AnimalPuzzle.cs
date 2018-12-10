@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK.Examples;
 
 public class AnimalPuzzle : MonoBehaviour {
 
     [SerializeField] private GameObject houseControllerObj;
     [SerializeField] private GameObject bunny;
     [SerializeField] private GameObject topDrawer;
+    [SerializeField] private GameObject hint;
     [SerializeField] float puzzleReward = 20.0f;
 
 
@@ -38,7 +40,9 @@ public class AnimalPuzzle : MonoBehaviour {
         {
             houseController.madness -= puzzleReward;
             puzzleSolved = true;
-            topDrawer.transform.position += new Vector3(0.0f, 0.0f, 11.0f);
+            topDrawer.transform.localPosition += new Vector3(0.0f, 0.0f, 11.0f);
+            topDrawer.GetComponent<MoveObject>().enabled = false;
+            hint.SetActive(true);
         }
 	}
 
