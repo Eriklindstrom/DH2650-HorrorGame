@@ -82,6 +82,36 @@ namespace VRTK.Examples
                         m_distanceTraveled = 0.0f;
                     }
                 }
+                /*Handles Wardrobe in z axis, weird scale*/
+                if (gameObject.tag == "DoorLeft")
+                {
+                    if (m_distanceTraveled < 0.5f)
+                    {
+                        Vector3 oldPosition = transform.position;
+                        transform.Translate(-0.8f * Time.deltaTime, 0, 0);
+                        m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+                    }
+                    else
+                    {
+                        isOpened = true;
+                        m_distanceTraveled = 0.0f;
+                    }
+                }
+                /*Handles Wardrobe in z axis, weird scale*/
+                if (gameObject.tag == "DoorRight")
+                {
+                    if (m_distanceTraveled < 0.5f)
+                    {
+                        Vector3 oldPosition = transform.position;
+                        transform.Translate(0.8f * Time.deltaTime, 0, 0);
+                        m_distanceTraveled += Vector3.Distance(oldPosition, transform.position);
+                    }
+                    else
+                    {
+                        isOpened = true;
+                        m_distanceTraveled = 0.0f;
+                    }
+                }
             }
             /**Close again**/
             else if (!open && isOpened)
@@ -131,6 +161,11 @@ namespace VRTK.Examples
                     }
                 }
             }
+        }
+
+        public void setOpen(bool val)
+        {
+            open = val;
         }
     }
 }

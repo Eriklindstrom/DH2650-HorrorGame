@@ -34,6 +34,22 @@ namespace VRTK.Examples
                 //openDoorScript.isActiveAndEnabled(true);
                 //lockedDoorScript.enabled(false);
             }
+
+            if(gameObject.tag == "PorchKey" && col.gameObject.tag == "PorchDoor")
+            {
+                DoorObject.GetComponent<LockedDoor>().enabled = false;
+                foreach(Transform child in col.transform)
+                {
+                    if (child.tag == "DoorLeft" || child.tag == "DoorRight")
+                    {
+                        MoveObject openScript = child.GetComponent<MoveObject>();
+                        openScript.enabled = true;
+                        openScript.setOpen(true);
+                    }
+                }
+                col.gameObject.GetComponent<BoxCollider>().enabled = false;
+                Destroy(gameObject);
+            }
         }
     }
 }
