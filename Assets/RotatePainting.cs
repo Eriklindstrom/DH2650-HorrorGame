@@ -14,7 +14,15 @@ namespace VRTK.Examples
         float m_distanceTraveled = 0f;
         private float time;
         [SerializeField] private GameObject RotateAround;
+        [SerializeField] private GameObject houseControllerObj;
+        [SerializeField] private int madnessDiscount = 20;
         private bool paintingFlipped = false;
+        private HouseController houseController;
+
+        public void Start()
+        {
+            houseController = houseControllerObj.GetComponent<HouseController>();
+        }
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
@@ -31,6 +39,7 @@ namespace VRTK.Examples
                 if (gameObject.tag == "Painting" && !paintingFlipped)
                 {
                     Rotation();
+                    houseController.madness -= madnessDiscount;
                 }
             }
             
