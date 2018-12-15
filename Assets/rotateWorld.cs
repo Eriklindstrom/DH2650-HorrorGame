@@ -8,9 +8,11 @@ namespace VRTK.Examples
     public class rotateWorld : VRTK_InteractableObject
     {
 
-        [SerializeField] private GameObject World;
+        [SerializeField] private GameObject Cellar;
         [SerializeField] private GameObject BackWall;
         [SerializeField] private GameObject FinalRoom;
+        [SerializeField] private GameObject Door;
+        [SerializeField] private GameObject Player;
 
         public bool isOpened;
         private float totAngle;
@@ -23,16 +25,17 @@ namespace VRTK.Examples
 
         // Update is called once per frame
         protected override void Update() {
-            if(gameObject.GetComponent<rotateDoor>().isOpened && rotate)
+            if(Door.GetComponent<rotateDoor>().isOpened && rotate)
             {
-                BackWall.SetActive(false);
+                BackWall.GetComponent<BoxCollider>().enabled = false;
+                //BackWall.SetActive(false);
                 FinalRoom.SetActive(true);
 
                 float angle = 75 * Time.deltaTime;
                 if (totAngle <= 90)
                 {
                     totAngle += angle;
-                    transform.RotateAround(World.transform.position, Vector3.left, angle);
+                    transform.RotateAround(Player.transform.position, Vector3.left, angle);
                 }
 
                 else if (totAngle >= 90)
