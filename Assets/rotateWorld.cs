@@ -14,6 +14,7 @@ namespace VRTK.Examples
         [SerializeField] private GameObject FinalRoom;
         [SerializeField] private GameObject Door;
         [SerializeField] private GameObject Player;
+        [SerializeField] private GameObject[] Mannequins;
 
         public bool isOpened;
         private float totAngle;
@@ -43,6 +44,12 @@ namespace VRTK.Examples
                 {
                     totAngle = 0;
                     rotate = false;
+                }
+
+                foreach(GameObject man in Mannequins)
+                {
+                    man.SetActive(false);
+                    //man.GetComponent<Rigidbody>().isKinematic = false;
                 }
 
                 StartCoroutine(LoadScene());

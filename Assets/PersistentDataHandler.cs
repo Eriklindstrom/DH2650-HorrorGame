@@ -15,7 +15,7 @@ public class PersistentDataHandler : MonoBehaviour {
     
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         madness = GetComponent<HouseController>().madness;
     }
 
