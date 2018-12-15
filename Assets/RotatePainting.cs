@@ -12,7 +12,7 @@ namespace VRTK.Examples
         private bool open = false;
         private bool isOpened = false;
         float m_distanceTraveled = 0f;
-        private float time;
+        private float time = 0.0f;
         [SerializeField] private GameObject RotateAround;
         [SerializeField] private GameObject houseControllerObj;
         [SerializeField] private int madnessDiscount = 20;
@@ -38,7 +38,8 @@ namespace VRTK.Examples
             {
                 if (gameObject.tag == "Painting" && !paintingFlipped)
                 {
-                    Rotation();
+                    paintingFlipped = true;
+                    StartCoroutine(Rotation());
                     houseController.madness -= madnessDiscount;
                 }
             }
@@ -47,15 +48,19 @@ namespace VRTK.Examples
             {
             }
         }
-        void Rotation()
+        IEnumerator Rotation()
         {
-            time += Time.deltaTime;
-            gameObject.transform.RotateAround(RotateAround.transform.position, -Vector3.right, (5.0f * Time.deltaTime));
-            if (time > 1.5f)
+            //time += Time.deltaTime;
+            while (time < 1.5f)
             {
-                paintingFlipped = true;
-                time = 0.0f;
+                time += Time.deltaTime;
+                gameObject.transform.RotateAround(RotateAround.transform.position, -Vector3.right, (5.0f * Time.deltaTime));
+                yield return null;
+                //paintingFlipped = true;
+                //time = 0.0f;
             }
+            yield break;
+           
         }
     }
 }

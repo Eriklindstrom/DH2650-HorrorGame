@@ -52,7 +52,7 @@ public class ChangeScene : MonoBehaviour {
         {
             audioSource.volume = 0;
             audioSource.Play();
-            while (audioSource.volume < 0.8)
+            while (audioSource.volume < 0.7)
             {
                 audioSource.volume += Time.deltaTime / FadeTime;
                 yield return null;
