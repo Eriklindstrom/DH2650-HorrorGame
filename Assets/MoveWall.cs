@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveWall : MonoBehaviour {
 
     [SerializeField] private GameObject Wall;
+    [SerializeField] private GameObject Door;
+
 
     private float m_distanceTraveled = 0.0f;
     private bool moveWall = false;
@@ -22,6 +24,7 @@ public class MoveWall : MonoBehaviour {
             {
                 Vector3 oldPosition = Wall.transform.position;
                 Wall.transform.Translate(-8.0f * Time.deltaTime, 0, 0);
+                Door.transform.Translate(0, 8.0f * Time.deltaTime, 0);
                 m_distanceTraveled += Vector3.Distance(oldPosition, Wall.transform.position);
             }
             else
@@ -36,7 +39,8 @@ public class MoveWall : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        moveWall = true;
+        if (col.gameObject.tag == "MainCamera")
+            moveWall = true;
         
     }
 }

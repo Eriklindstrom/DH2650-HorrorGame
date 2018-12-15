@@ -13,7 +13,7 @@ namespace VRTK.Examples
         [SerializeField] private GameObject RotateAround;   //Empty object on door to rotate around
 
         private bool open = false;
-        private bool isOpened = false;
+        public bool isOpened = false;
         private float totAngle;             //Float to check when to stop rotating
 
 
