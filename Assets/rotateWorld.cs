@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace VRTK.Examples
 {
@@ -43,8 +44,18 @@ namespace VRTK.Examples
                     totAngle = 0;
                     rotate = false;
                 }
+
+                StartCoroutine(LoadScene());
             }
 
+        }
+
+        IEnumerator LoadScene()
+        {
+            yield return new WaitForSeconds(5.0f);
+            gameObject.GetComponent<AudioSource>().Play(0);
+            yield return new WaitForSeconds(5.0f);
+            SceneManager.LoadScene(0);
         }
     }
 }

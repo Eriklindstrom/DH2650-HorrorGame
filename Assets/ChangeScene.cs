@@ -19,14 +19,14 @@ public class ChangeScene : MonoBehaviour {
        
         if (col.transform.tag == "Toilet" && !changeTriggered)
         {
+            changeTriggered = true;
             StartCoroutine(AudioFade.FadeOut(safeSoudns, 1f));
 
             scarySounds.enabled = true;
             scarySounds.clip = MakeSubclip(scarySounds.clip, 9, 30);
             StartCoroutine(AudioFade.FadeIn(scarySounds, 10f));
 
-            StartCoroutine("DoSwitch");
-            changeTriggered = true;
+            StartCoroutine("DoSwitch");            
         }
             
             
