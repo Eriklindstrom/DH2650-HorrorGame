@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HouseController : MonoBehaviour {
 
@@ -12,11 +14,13 @@ public class HouseController : MonoBehaviour {
     public AudioClip[] themeSongs;
     [SerializeField] float madnessThreshold = 10;
     [SerializeField] GameObject flamePrefab;
+    [SerializeField] Image blinds;
+    [SerializeField] AudioSource scarySounds;
 
     /**********************\
         Non-configurable
     \**********************/
-    
+
     [HideInInspector] public float madnessPercentage = 0.0f;
     [HideInInspector] public bool lightsOut = false;
 
@@ -29,6 +33,7 @@ public class HouseController : MonoBehaviour {
     private int toggleMusic = 1;
     private double musicStarted;
     private double musicDuration;
+    private bool killingPlayer = false;
 
     private float flickerTimer = 0.0f;
 
@@ -88,8 +93,40 @@ public class HouseController : MonoBehaviour {
         madness += Time.deltaTime;
         madnessPercentage = madness / madnessThreshold;
 
+        if (madnessPercentage > 0.9 && !killingPlayer)
+        {
+            foreach (AudioSource theme in themePlayer)
+            {
+                if (theme.isPlaying)
+                    StartCoroutine(ChangeScene.AudioFade.FadeOut(theme, 10f));
+            }                
+
+            scarySounds.clip = MakeSubclip(scarySounds.clip, 9, 30);
+            StartCoroutine(ChangeScene.AudioFade.FadeIn(scarySounds, 10f));
+
+            StartCoroutine("KillPlayer", 0);
+            killingPlayer = true;
+        }
+
         Horrify();
 	}
+    float alpha = 0.0f;
+    IEnumerator KillPlayer(int scene)
+    {
+        Debug.Log("coroutine");
+        float timer = 0.0f;
+        while (timer < 10.0f)
+        {
+            timer += Time.deltaTime;
+            alpha = timer / 10.0f;
+            blinds.color = new Color(blinds.color.r, blinds.color.g, blinds.color.b, alpha);
+            yield return null;
+        }
+
+        scarySounds.Stop();
+        SceneManager.LoadScene(scene);
+        yield break;
+    }
 
     void Horrify()
     {
@@ -105,7 +142,7 @@ public class HouseController : MonoBehaviour {
         for (int i = themeSongs.Length-1; i > -1; i--)
         {
             //print(madnessPercentage);
-            if (madnessPercentage >= 1f|| (madnessPercentage > percentageSwitch[i])) // Should play this song!
+            if (madnessPercentage >= 1f|| (madnessPercentage > percentageSwitch[i]) && !killingPlayer) // Should play this song!
             {
                 //if (themePlaying[i]) break;
                 for (int p = 0; p < themePlaying.Length; p++) { themePlaying[p] = false; }
@@ -252,5 +289,26 @@ public class HouseController : MonoBehaviour {
         
         lightsOut = false;
         yield break;
+    }
+
+    private AudioClip MakeSubclip(AudioClip clip, float start, float stop)
+    {
+        /* Create a new audio clip */
+        int frequency = clip.frequency;
+        float timeLength = stop - start;
+        int samplesLength = (int)(frequency * timeLength);
+        AudioClip newClip = AudioClip.Create(clip.name + "-sub", samplesLength, 1, frequency, false);
+
+        /* Create a temporary buffer for the samples */
+        float[] data = new float[samplesLength];
+
+        /* Get the data from the original clip */
+        clip.GetData(data, (int)(frequency * start));
+
+        /* Transfer the data to the new clip */
+        newClip.SetData(data, 0);
+
+        /* Return the sub clip */
+        return newClip;
     }
 }

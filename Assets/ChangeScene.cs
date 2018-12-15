@@ -25,26 +25,24 @@ public class ChangeScene : MonoBehaviour {
             scarySounds.clip = MakeSubclip(scarySounds.clip, 9, 30);
             StartCoroutine(AudioFade.FadeIn(scarySounds, 10f));
 
-            StartCoroutine("DoSwitch");
+            StartCoroutine("DoSwitch", 1);
             changeTriggered = true;
-        }
-            
-            
+        }    
     }
 
-    public IEnumerator DoSwitch()
+    public IEnumerator DoSwitch(int scene)
     {
         Debug.Log("coroutine");
         float timer = 0.0f;
-        while(timer < 10.0f)
+        while(timer < 8.0f)
         {
             timer += Time.deltaTime;
-            alpha = timer/10.0f;
+            alpha = (timer/6.0f);
             blinds.color = new Color(blinds.color.r, blinds.color.g, blinds.color.b, alpha);
             yield return null;
         }
-
-        SceneManager.LoadScene(1);
+        scarySounds.Stop();
+        SceneManager.LoadScene(scene);
         yield break;
     }
 
@@ -54,7 +52,7 @@ public class ChangeScene : MonoBehaviour {
         {
             audioSource.volume = 0;
             audioSource.Play();
-            while (audioSource.volume < 0.7)
+            while (audioSource.volume < 0.8)
             {
                 audioSource.volume += Time.deltaTime / FadeTime;
                 yield return null;
