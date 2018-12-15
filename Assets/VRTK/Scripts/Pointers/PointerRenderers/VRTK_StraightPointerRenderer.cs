@@ -2,6 +2,7 @@
 namespace VRTK
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// The Straight Pointer Renderer emits a coloured beam from the end of the object it is attached to and simulates a laser beam.
@@ -18,7 +19,7 @@ namespace VRTK
         [Header("Straight Pointer Appearance Settings")]
 
         [Tooltip("The maximum length the pointer tracer can reach.")]
-        public float maximumLength = 100f;
+        public float maximumLength = 10000f;
         [Tooltip("The scale factor to scale the pointer tracer object by.")]
         public float scaleFactor = 0.002f;
         [Tooltip("The scale multiplier to scale the pointer cursor object by in relation to the `Scale Factor`.")]
@@ -166,6 +167,7 @@ namespace VRTK
                 {
                     PointerExit(destinationHit);
                 }
+                
 
                 destinationHit = new RaycastHit();
                 ChangeColor(invalidCollisionColor);
@@ -176,10 +178,14 @@ namespace VRTK
         {
             if (rayHit)
             {
+
+
                 PointerEnter(pointerCollidedWith);
 
                 destinationHit = pointerCollidedWith;
                 ChangeColor(validCollisionColor);
+
+                
             }
         }
 
@@ -198,6 +204,10 @@ namespace VRTK
             float actualLength = maximumLength;
             if (rayHit && pointerCollidedWith.distance < maximumLength)
             {
+                if (pointerCollidedWith.transform.tag == "PlayButton")
+                {
+                    SceneManager.LoadScene(1);
+                }
                 actualLength = pointerCollidedWith.distance;
             }
 

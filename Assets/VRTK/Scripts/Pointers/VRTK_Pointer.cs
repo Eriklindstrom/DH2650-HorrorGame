@@ -2,6 +2,7 @@
 namespace VRTK
 {
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     /// <summary>
     /// The VRTK Pointer class forms the basis of being able to emit a pointer from a game object (e.g. controller).
@@ -107,6 +108,7 @@ namespace VRTK
         {
             if (ActivationButtonPressed != null)
             {
+              
                 ActivationButtonPressed(this, e);
             }
         }
