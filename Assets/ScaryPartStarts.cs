@@ -35,7 +35,7 @@ public class ScaryPartStarts : MonoBehaviour {
         }
         */
         yield return new WaitForSeconds(sec);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         //yield break;
     }
 }
